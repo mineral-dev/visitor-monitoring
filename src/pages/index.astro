@@ -1,15 +1,68 @@
 ---
----
+import Card from "../components/card.astro";
+import {format} from 'light-date';
+const title = "Mineral Visitor Monitoring";
+const date = new Date();
+const time = format(date, '{HH}:{mm}:{ss}');
+const today = format(date, '{yyyy}-{MM}-{dd}');
 
+const accounts = [
+	{
+		name: 'PVRA',
+		visitor: 1000
+	},
+	{
+		name: 'MAYRA',
+		visitor: 1000
+	},
+	{
+		name: 'LIGHTSCLO',
+		visitor: 1000
+	},
+	{
+		name: 'NAPOCUT',
+		visitor: 1000
+	},
+	{
+		name: 'NUETA',
+		visitor: 1000
+	},
+	{
+		name: 'KALEELA',
+		visitor: 1000
+	},
+	{
+		name: 'MONOKHEI',
+		visitor: 1000
+	},
+	{
+		name: 'JAVINA',
+		visitor: 1000
+	},
+	{
+		name: 'MUJIONO',
+		visitor: 1000
+	}
+];
+---
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="w-screen h-screen flex flex-col space-y-4 bg-gray-900 text-white p-4">
+		<header class="grid grid-cols-3 items-center gap-4">
+			<h1 class="text-2xl xl:text-4xl">{title}</h1>
+			<h3 class="text-xl text-center">{time}</h3>
+			<h3 class="text-xl text-right">{today}</h3>
+		</header>
+		<div class="flex-grow grid grid-cols-2 lg:grid-cols-3 gap-4">
+			{accounts.map((item) => (
+				<Card name={item.name} visitor={item.visitor} />
+			))}
+		</div>
 	</body>
 </html>
