@@ -1,10 +1,29 @@
 ---
-const {name, visitor} = Astro.props;
+const {key, name, visitor} = Astro.props;
+
+const latestVisitor = visitor.slice(-1).pop();
 ---
-<div class="grid place-items-center bg-gray-700 border-2 border-gray-600 rounded-xl p-4">
+<div class="grid place-items-center bg-gray-700 border-2 border-gray-600 rounded-xl">
   <div class="flex flex-col items-center space-y-1">
-    <h2 class="tlg:text-2xl font-bold">{name}</h2>
-    <h3 class="text-xl lg:text-7xl">{visitor.toLocaleString('en')}</h3>
-    <p class="text-xs lg:text-sm text-gray-400">Visitors in last 5 minutes</p>
+    <h2 class="lg:text-xl font-bold mt-4">{name}</h2>
+    <h3 class="text-xl lg:text-5xl">{latestVisitor.count.toLocaleString('en')}</h3>
+    <p class="italic text-xs text-gray-400">Visitors in last 5 minutes</p>
+    <canvas id={`account-${key}`} class="w-full"></canvas>
   </div>
 </div>
+<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script is:inline define:vars={{ key, visitor }}>
+  const ctx = document.getElementById(`account-${key}`);
+
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: visitor.map(row => row.time),
+      datasets: [{
+        label: '# of Votes',
+        data: visitor.map(row => row.count),
+        // borderWidth: 0
+      }]
+    }
+  });
+</script>

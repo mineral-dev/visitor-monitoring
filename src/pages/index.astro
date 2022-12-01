@@ -6,42 +6,268 @@ const date = new Date();
 const time = format(date, '{HH}:{mm}:{ss}');
 const today = format(date, '{yyyy}-{MM}-{dd}');
 
+// dummy -- will be replaced by API
 const accounts = [
 	{
 		name: 'PVRA',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'MAYRA',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'LIGHTSCLO',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'NAPOCUT',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'NUETA',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'KALEELA',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'MONOKHEI',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'JAVINA',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	},
 	{
 		name: 'MUJIONO',
-		visitor: 1000
+		visitor: [
+			{
+				time: '16:00',
+				count: 200
+			},
+			{
+				time: '16:01',
+				count: 590
+			},
+			{
+				time: '16:02',
+				count: 900
+			},
+			{
+				time: '16:03',
+				count: 1200
+			},
+			{
+				time: '16:04',
+				count: 2000
+			},
+			{
+				time: '16:05',
+				count: 2500
+			}
+		]
 	}
 ];
 ---
@@ -60,8 +286,8 @@ const accounts = [
 			<h3 class="text-xl text-right">{today}</h3>
 		</header>
 		<div class="flex-grow grid grid-cols-2 lg:grid-cols-3 gap-4">
-			{accounts.map((item) => (
-				<Card name={item.name} visitor={item.visitor} />
+			{accounts.map((item, key) => (
+				<Card key={key} name={item.name} visitor={item.visitor} />
 			))}
 		</div>
 	</body>
