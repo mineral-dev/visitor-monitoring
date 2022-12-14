@@ -1,13 +1,14 @@
 ---
 import Card from "../components/card.astro";
 import {format} from 'light-date';
+
 const title = "Mineral Visitor Monitoring";
 const date = new Date();
 const time = format(date, '{HH}:{mm}:{ss}');
 const today = format(date, '{yyyy}-{MM}-{dd}');
 
 // dummy -- will be replaced by API
-const accounts = [
+let clients = [
 	{
 		name: 'PVRA',
 		visitor: [
@@ -270,6 +271,10 @@ const accounts = [
 		]
 	}
 ];
+
+const response = await fetch('https://royal-tundra-ewnvidlx9d.ploi.link/api/get-active-users/');
+const data = await response.json();
+clients = data.data;
 ---
 <html lang="en">
 	<head>
@@ -286,9 +291,11 @@ const accounts = [
 			<h3 class="text-xl text-right">{today}</h3>
 		</header>
 		<div class="flex-grow grid grid-cols-2 lg:grid-cols-3 gap-4">
-			{accounts.map((item, key) => (
-				<Card key={key} name={item.name} visitor={item.visitor} />
-			))}
+			{
+				clients.map((item, key) => (
+					<Card key={key} name={item.name} visitor={item.visitor} />
+				))
+			}
 		</div>
 	</body>
 </html>

@@ -1,14 +1,34 @@
 ---
 const {key, name, visitor} = Astro.props;
+const latestVisitor = visitor.slice(1).pop();
+console.log(latestVisitor)
 
-const latestVisitor = visitor.slice(-1).pop();
+let hiVisitor = null;
+visitor.map((item, key) => {
+  hiVisitor = 0
+})
+
+// console.log(hiVisitor);
+
 ---
 <div class="grid place-items-center bg-gray-700 border-2 border-gray-600 rounded-xl">
-  <div class="flex flex-col items-center space-y-1">
-    <h2 class="lg:text-xl font-bold mt-4">{name}</h2>
-    <h3 class="text-xl lg:text-5xl">{latestVisitor.count.toLocaleString('en')}</h3>
+  <div class="flex flex-col items-center space-y-1 overflow-hidden">
+    <h2 class="lg:text-xl font-bold mt-4 capitalize">{name}</h2>
+    <!-- <h3 class="text-xl lg:text-5xl">{latestVisitor.count.toLocaleString('en')}</h3> -->
+    <h3 class="text-xl lg:text-5xl">{latestVisitor.count}</h3>
     <p class="italic text-xs text-gray-400">Visitors in last 5 minutes</p>
-    <canvas id={`account-${key}`} class="w-full"></canvas>
+    
+    <!-- <canvas id={`account-${key}`} class="w-full"></canvas> -->
+  </div>
+  <div class="relative flex w-full overflow-x-scroll">
+    {
+      visitor.map((item, key) => (
+        <div class="border-gray-600 last:border-r-0 px-4">
+          <div class="text-xs text-center">{item.count}</div>
+          <div class="text-xs text-center text-gray-400">{item.hour}</div>
+        </div>
+      ))
+    }
   </div>
 </div>
 <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
